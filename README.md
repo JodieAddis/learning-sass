@@ -13,7 +13,7 @@ Premier exercice d'application de ***Sass***. L'objectif est la création d'une 
 Le positionnement a été réalisé via les propriétés "grid". 
 Application des bases du langage ***Sass*** : variables, mixins, ...
 
-![Final result](../learning-sass/assets/img/Result.png)
+![Final result](./assets/img/Result.png)
 
 
 </center>
