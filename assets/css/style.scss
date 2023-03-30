@@ -1,0 +1,118 @@
+//Import font OpenSans//
+@font-face {
+    font-family: Open;
+    src: url(../font/OpenSans/OpenSans-Regular.ttf);
+}
+$title: Open; //Variable qui reprend la police OpenSans//
+//Import font QuickSand//
+@font-face {
+    font-family: Quick;
+    src: url(../font/Quicksand/Quicksand-VariableFont_wght.ttf);
+}
+
+$text: Quick ;//Variable qui reprend la police QuickSand//
+
+//Mixin pour les contenus de texte//
+@mixin text-content {
+    color: rgb(102, 102, 102);
+    text-align: justify;
+    line-height: 1.5;
+    font-size: 14px;
+    font-family: Quick ;
+    margin: 1rem ;
+}
+//Variables de couleurs pour les fond et écritures//
+$color: rgb(4, 155, 145);
+$colorF: #ffffff ; 
+$back : rgb(213, 214, 214) ;
+
+//Float element//
+@mixin float {
+    background-color: $color;
+    color: $colorF;
+    font-family: $text;
+    text-align: center;
+    font-weight: 700;
+}
+
+body{
+    background-color: $back;
+    display: grid;
+    grid-template-columns: 1fr 400px 1fr ;
+    grid-template-rows: 1fr 550px 1fr;
+    max-width: 100%;
+    margin-top: 4.5rem;
+}
+.card {
+    background-color: $colorF;
+    border: black solid 1px;
+    box-shadow: 2px 2px 2px (rgba(73, 73, 73, 0.8));
+    grid-column: 2;
+    grid-row: 2;
+    .photos{
+        grid-column: 2;
+        grid-row: 1 ;
+        @include float();
+        width: 80px;
+        height: 60px;
+        transform: translate(-1rem, -4rem);
+        padding: 2px 5px 2px 5px;
+    }
+    .Img {
+        img{
+            max-width: 400px;
+                &:hover{
+                    cursor: pointer;
+                }
+        }
+    }
+    &:hover {
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;//permet que l'image ne sort pas du contenu lors du zoom//
+        .Content{
+            transform: translateY(-6rem);
+            transition: all 0.5s ease-in-out;
+            .text{
+                display: contents;
+                @include text-content();
+            }
+        }
+        img {
+            transform: scale(120%);//effet de zoom en agrandissant l'échelle, combiner à overflow:hidden//
+            transition: all 0.5s ease-in-out ;
+            filter: grayscale(70%) contrast(100%);
+        }
+        .photos{
+            color: $colorF;
+        }
+    }
+}
+    .Content {
+        background-color: $colorF;
+        color: $color;
+        padding: 1rem ;
+        h1{
+            text-transform: uppercase;
+            font-family: $title;
+            margin-top: -3rem;
+        }
+        h2{
+            font-family: $title;
+        }
+        .text{
+            display: none;
+        }
+    }
+
+.date{
+    @include float();
+    font-size: 18px;
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+    position: absolute;
+    right: 36rem;
+    top: 5rem;
+}
+
